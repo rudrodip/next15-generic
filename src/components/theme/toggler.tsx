@@ -9,6 +9,12 @@ type ThemeTogglerProps = {
   className?: string;
 }
 
+declare global {
+  interface Document {
+    startViewTransition?: (callback: () => void) => void;
+  }
+}
+
 export default function ThemeToggler({ className }: ThemeTogglerProps) {
   const { theme, setTheme } = useTheme();
 
@@ -26,11 +32,11 @@ export default function ThemeToggler({ className }: ThemeTogglerProps) {
   };
 
   const toggleTheme = () => {
-    //@ts-expect-error startViewTransition is not supported in all browsers
-    if (!document.startViewTransition) switchTheme();
-
-    //@ts-expect-error startViewTransition is not supported in all browsers
-    document.startViewTransition(switchTheme);
+    if (document.startViewTransition) {
+      document.startViewTransition(switchTheme);
+    } else {
+      switchTheme();
+    }
   };
 
   return (
