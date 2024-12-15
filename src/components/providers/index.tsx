@@ -4,8 +4,9 @@ export default function RootProviders({ children }: { children: React.ReactNode 
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="system"
+      defaultTheme="light"
       enableSystem
+      disableTransitionOnChange
     >
       {children}
     </ThemeProvider>
