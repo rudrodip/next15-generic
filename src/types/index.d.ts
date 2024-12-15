@@ -18,7 +18,7 @@ export type SiteConfig = {
 export type Theme = "light" | "dark";
 
 export type Blog = {
-  id: string;
+  id: number;
   title: string;
   description: string;
   author: string;

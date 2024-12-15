@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { type Blog } from "@/types";
+import { blogs } from "@/app/api/blogs/data";
 
 function BlogSkeleton() {
   return (
@@ -58,10 +59,6 @@ function BlogGrid({ blogs }: { blogs: Blog[] }) {
 }
 
 export default async function BlogsPage() {
-  const blogsResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`);
-
-  const blogs = await blogsResponse.json();
-
   return (
     <div>
       <div className="px-4 py-8">
